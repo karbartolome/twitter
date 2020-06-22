@@ -4,7 +4,6 @@ library(extrafont)
 library(lubridate)
 library(ggpubr)
 library(packcircles)
-library(ggplot2)
 
 df=read.csv('df_econtwitter.csv',stringsAsFactors = FALSE )
 df$tweet=tolower(df$tweet)
@@ -97,7 +96,6 @@ ggplot()+
   geom_line(data=df_tweets,aes(x=date,y=n), color='#9da69f')+
   geom_point(data=df_tweets,aes(x=date,y=n), color='#9da69f', alpha=0.2)+
   geom_col(data=df_lang, aes(x=date,y=n*4, fill=lenguaje), position='stack')+
-  #geom_text(data=df_lang, aes(x=date,y=n, label=n), position = position_stack(vjust = .5))+
   scale_y_continuous(name='tweets',
                      sec.axis = sec_axis(~./4, name = "tweets que mencionan lenguajes"))+
   scale_fill_manual(values = c("#F2CB05","#415CF2", "#69c779"))+
@@ -106,7 +104,7 @@ ggplot()+
        caption='@karbartolome')+
   theme_minimal()+
   theme(text=element_text(size=15),
-        #family="Courier New"), 
+        family="Courier New"), 
         title=element_text(size=20),
         panel.grid.major = element_blank(),
         legend.position = 'bottom',
